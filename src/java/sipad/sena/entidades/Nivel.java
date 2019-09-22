@@ -20,6 +20,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -41,9 +43,13 @@ public class Nivel implements Serializable {
     @Column(name = "Id_Nivel")
     private Integer idNivel;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 30)
     @Column(name = "Nombre_Nivel")
     private String nombreNivel;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 200)
     @Column(name = "Objetivos")
     private String objetivos;
     @OneToMany(mappedBy = "idNivel", fetch = FetchType.LAZY)

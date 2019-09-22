@@ -25,7 +25,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -50,23 +51,29 @@ public class Torneo implements Serializable {
     @Column(name = "id_torneo")
     private Integer idTorneo;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 30)
     @Column(name = "Nombre_Torneo")
     private String nombreTorneo;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "Hora_Torneo")
     @Temporal(TemporalType.TIMESTAMP)
     private Date horaTorneo;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "Fecha_Inicio")
     @Temporal(TemporalType.DATE)
     private Date fechaInicio;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "Fecha_Final")
     @Temporal(TemporalType.DATE)
     private Date fechaFinal;
     @Lob
     @Column(name = "imagen_torneo")
     private byte[] imagenTorneo;
+    @Size(max = 45)
     @Column(name = "descripcion_torneo")
     private String descripcionTorneo;
     @JoinColumn(name = "Id_Lugar_Torneo", referencedColumnName = "Id_Lugar_Torneo")

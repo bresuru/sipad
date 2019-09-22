@@ -20,6 +20,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -40,6 +41,7 @@ public class Profesor implements Serializable {
     @Column(name = "id_profesor")
     private Integer idProfesor;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "id_especialidad")
     private int idEspecialidad;
     @JoinColumn(name = "documento", referencedColumnName = "Documento")

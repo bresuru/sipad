@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      >
+    <h:head>
+        <title>Inscripcion a futbol</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <ui:include src="../../../WEB-INF/indexEst/link_estilos.xhtml"/>
+    </h:head>
+
+    <f:view locale="es">
+
+        <h:body>
+            
+
+            <div class="container w-100">
+                <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light row pl-4">
+                    <ul class="nav bg-primary">
+                        <li class="nav-item">
+                            <a class="btn btn-danger" href="../pages_index/inscripcion_index.xhtml">Cancelar</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="container h-100 bg-white mt-3 mb-4 w-75">
+                    <div class="row">
+                        <h1 class="col-12 pl-4 mt-2 mb-1">
+                            Formulario de inscripción a futbol
+                        </h1>
+                    </div>
+
+                    <h:form class="was-validated p-3">
+                        
+                        <div class="col-12 text-center">
+                            <h:messages globalOnly="true" showDetail="true"/>
+                        </div>
+                        
+
+                        <div class="mb-3">
+                            <h:outputLabel for="nombreU" value="#{textSupp.nombre}"/>
+                            <h:inputText class="form-control-plaintext p-1" 
+                                         value="#{inscripcionController.usuario.nombre1}" 
+                                         id="nombreU" required="true"/>
+                            <h:message for="nombreU" showDetail="true"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <h:outputLabel for="apellidoU" value="#{textSupp.apellidoUsu}"/>
+                            <h:inputText class="form-control"
+                                         value="#{inscripcionController.usuario.apellido1}" 
+                                         id="apellidoU" required="true"/>
+                            <h:message for="apellidoU" showDetail="true"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <h:outputLabel for="doc" value="#{textSupp.documentoI}"/>
+                            <h:inputText class="form-control" 
+                                         value="#{inscripcionController.usuario.documento}" 
+                                         id="doc" required="true"/>
+                            <h:message for="doc" showDetail="true"/>
+                        </div>
+
+                        <div class="custom-file mb-2 mt-2">
+                            <h:outputLabel for="tell" value="#{textSupp.eps}"/>
+                            <h:selectOneMenu class="ml-1" 
+                                             value="#{inscripcionController.usuario.idEps}" >
+                                <f:selectItems
+                                    var="listaE"
+                                    value="#{inscripcionController.epsL}"
+                                    itemLabel="#{listaE.nombreEps}"
+                                    itemValue="#{listaE.idEps}"
+                                    />
+                            </h:selectOneMenu>
+                            <h:messages for="eps" showDetail="true"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <h:outputLabel for="fechaN" value="#{textSupp.fechaNacimiento}"/>
+                            <h:inputText value="#{inscripcionController.usuario.fechaNacimiento}"  
+                                         a:type="date" class="form-control " id="fechaN"
+                                         required="true">
+                                <f:convertDateTime pattern="yyyy-mm-dd"/>
+                            </h:inputText>
+                            <h:message for="fechaN" showDetail="true"/>
+                        </div>
+
+
+                        <div class="mb-2 mt-2">
+                            <h:outputLabel value="#{textSupp.tipoSangre}" />
+                            <h:selectOneMenu class="ml-2" 
+                                             value="#{inscripcionController.tipoSangre.idtipoSangre}">
+                                <f:selectItems 
+                                    var="listaRh"
+                                    value="#{inscripcionController.tipoSangreL}" 
+                                    itemLabel="#{listaRh.rh}"
+                                    itemValue="#{listaRh.idtipoSangre}"
+                                    />
+                            </h:selectOneMenu>
+                            <h:message for="rh" showDetail="true"/>
+                        </div>                  
+
+                        <div class="mb-3">
+                            <label for="enfermedad">¿Padese de alguna enfemedad?</label>
+                            <h:inputTextarea class="form-control is-invalid" id="enfermedad"
+                                             value="#{inscripcionController.alumno.descripcion}" />
+                        </div>
+
+                        <div class="custom-control custom-checkbox mb-3">
+                            <h:selectManyCheckbox class="custom-control-input" id="terminos" required="false"/>
+                            <h:outputLabel class="custom-control-label" for="terminos">
+                                Acepta los terminos y condiciones de la acedemia deportiva
+                            </h:outputLabel>
+                            <h:message for="terminos" showDetail="true"/>
+                        </div>
+
+                        <div class="col-12 text-center mt-4">
+                            <h:commandButton value="#{textSupp.crear}" class="btn btn-success" 
+                                             actionListener="#"/>
+                        </div>
+
+                    </h:form>
+
+                </div>
+
+            </div>
+
+        </h:body>
+
+    </f:view>
+
+</html>

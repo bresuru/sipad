@@ -18,6 +18,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -37,6 +38,7 @@ public class Roles implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_rol")
     private Integer idRol;
+    @Size(max = 45)
     @Column(name = "rol")
     private String rol;
     @OneToMany(mappedBy = "idRol", fetch = FetchType.LAZY)

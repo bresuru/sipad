@@ -23,6 +23,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -43,16 +45,23 @@ public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
+    @NotNull
     @Column(name = "Documento")
     private Integer documento;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
     @Column(name = "Nombre_1")
     private String nombre1;
+    @Size(max = 30)
     @Column(name = "Nombre_2")
     private String nombre2;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 30)
     @Column(name = "Apellido_1")
     private String apellido1;
+    @Size(max = 30)
     @Column(name = "Apellido_2")
     private String apellido2;
     @Column(name = "Fecha_Nacimiento")

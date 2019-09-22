@@ -20,6 +20,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -39,6 +40,7 @@ public class Lugar implements Serializable {
     @Basic(optional = false)
     @Column(name = "Id_Lugar")
     private Integer idLugar;
+    @Size(max = 30)
     @Column(name = "Nombre_Lugar")
     private String nombreLugar;
     @Lob

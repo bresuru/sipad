@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -34,6 +35,7 @@ public class Posiciones implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_posicion")
     private Integer idPosicion;
+    @Size(max = 45)
     @Column(name = "posicion")
     private String posicion;
 

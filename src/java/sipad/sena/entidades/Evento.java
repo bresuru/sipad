@@ -25,6 +25,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -48,19 +50,25 @@ public class Evento implements Serializable {
     @Column(name = "id_evento")
     private Integer idEvento;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 30)
     @Column(name = "Nombre_Evento")
     private String nombreEvento;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "Horario")
     @Temporal(TemporalType.TIMESTAMP)
     private Date horario;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 200)
     @Column(name = "Informacion")
     private String informacion;
     @Lob
     @Column(name = "foto_evento")
     private byte[] fotoEvento;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "Id_Lugar")
     private int idLugar;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "eventoIdEvento", fetch = FetchType.LAZY)
