@@ -21,6 +21,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -43,18 +45,22 @@ public class HorarioEntrenamiento implements Serializable {
     @Column(name = "id_horario_entrenamiento")
     private Integer idHorarioEntrenamiento;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 60)
     @Column(name = "dia")
     private String dia;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "hora_inicio")
     @Temporal(TemporalType.TIME)
     private Date horaInicio;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "hora_fin")
     @Temporal(TemporalType.TIME)
     private Date horaFin;
-    @OneToMany(mappedBy = "idHorarioEntrenamiento", fetch = FetchType.LAZY)
-    private List<NivelHasHorario> nivelHasHorarioList;
+    @OneToMany(mappedBy = "idHorario", fetch = FetchType.LAZY)
+    private List<HorarioHasNivel> horarioHasNivelList;
 
     public HorarioEntrenamiento() {
     }
@@ -102,12 +108,12 @@ public class HorarioEntrenamiento implements Serializable {
         this.horaFin = horaFin;
     }
 
-    public List<NivelHasHorario> getNivelHasHorarioList() {
-        return nivelHasHorarioList;
+    public List<HorarioHasNivel> getHorarioHasNivelList() {
+        return horarioHasNivelList;
     }
 
-    public void setNivelHasHorarioList(List<NivelHasHorario> nivelHasHorarioList) {
-        this.nivelHasHorarioList = nivelHasHorarioList;
+    public void setHorarioHasNivelList(List<HorarioHasNivel> horarioHasNivelList) {
+        this.horarioHasNivelList = horarioHasNivelList;
     }
 
     @Override

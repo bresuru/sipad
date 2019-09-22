@@ -8,6 +8,7 @@ package sipad.sena.entidades;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,6 +19,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -37,10 +39,13 @@ public class EstadoUsuario implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_estado_usuario")
     private Integer idEstadoUsuario;
+    @Size(max = 45)
     @Column(name = "estado")
     private String estado;
     @OneToMany(mappedBy = "estadoAlumno", fetch = FetchType.LAZY)
     private List<Alumno> alumnoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEstadoUsuario", fetch = FetchType.LAZY)
+    private List<Usuario> usuarioList;
 
     public EstadoUsuario() {
     }
@@ -71,6 +76,14 @@ public class EstadoUsuario implements Serializable {
 
     public void setAlumnoList(List<Alumno> alumnoList) {
         this.alumnoList = alumnoList;
+    }
+
+    public List<Usuario> getUsuarioList() {
+        return usuarioList;
+    }
+
+    public void setUsuarioList(List<Usuario> usuarioList) {
+        this.usuarioList = usuarioList;
     }
 
     @Override

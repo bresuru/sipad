@@ -20,6 +20,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -41,10 +43,14 @@ public class LugarTorneo implements Serializable {
     @Column(name = "Id_Lugar_Torneo")
     private Integer idLugarTorneo;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 30)
     @Column(name = "Nombre_Lugar_Torneo")
     private String nombreLugarTorneo;
     @Basic(optional = false)
-    @Column(name = "direccion")
+    @NotNull
+    @Size(min = 1, max = 30)
+    @Column(name = "Direccion")
     private String direccion;
     @Lob
     @Column(name = "foto_lugar")

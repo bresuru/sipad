@@ -41,14 +41,14 @@ and open the template in the editor.
 
                 <h:form class="p-3">
 
-                    <h:dataTable value="#{supervisorController.listarUsuarios()}" 
+                    <h:dataTable value="#{usuariosController.mostarUsuarios()}" 
                                  var="usuarios" styleClass="table table-success">
 
                         <h:column>
                             
                             <f:facet name="header">#{textSupp.documentoI}</f:facet>
                             
-                            <h:outputText value="#{usuarios.documento.documento}"/>
+                            <h:outputText value="#{usuarios.documento}"/>
                             
                         </h:column>
                         
@@ -56,7 +56,7 @@ and open the template in the editor.
                             
                             <f:facet name="header">#{textSupp.nombreUsu}</f:facet>
                             
-                            <h:outputText value="#{usuarios.documento.nombre1}"/>
+                            <h:outputText value="#{usuarios.nombre1}"/>
                             
                         </h:column>
                         
@@ -64,7 +64,7 @@ and open the template in the editor.
                             
                             <f:facet name="header">#{textSupp.apellidoUsu}</f:facet>
                             
-                            <h:outputText value="#{usuarios.documento.apellido1}"/>
+                            <h:outputText value="#{usuarios.apellido1}"/>
                             
                         </h:column>
                         
@@ -72,7 +72,7 @@ and open the template in the editor.
                             
                             <f:facet name="header">#{textSupp.fechaNacimiento}</f:facet>
                             
-                            <h:outputText value="#{usuarios.documento.fechaNacimiento}"/>
+                            <h:outputText value="#{usuarios.fechaNacimiento}"/>
                             
                         </h:column>
                         
@@ -80,7 +80,7 @@ and open the template in the editor.
                             
                             <f:facet name="header">#{textSupp.tipoSangre}</f:facet>
                             
-                            <h:outputText value="#{usuarios.documento.idtipoSangre.rh}"/>
+                            <h:outputText value="#{usuarios.idtipoSangre.rh}"/>
                             
                         </h:column>
                         
@@ -88,7 +88,7 @@ and open the template in the editor.
                             
                             <f:facet name="header">#{textSupp.eps}</f:facet>
                             
-                            <h:outputText value="#{usuarios.documento.idEps.nombreEps}"/>
+                            <h:outputText value="#{usuarios.idEps.nombreEps}"/>
                             
                         </h:column>
                         
@@ -96,7 +96,7 @@ and open the template in the editor.
                             
                             <f:facet name="header">#{textSupp.estado}</f:facet>
                             
-                            <h:outputText value="#{usuarios.estadoAlumno.estado}"/>
+                            <h:outputText value="#{usuarios.id}"/>
                             
                         </h:column>
                         

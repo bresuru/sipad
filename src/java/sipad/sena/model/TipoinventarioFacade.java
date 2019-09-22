@@ -8,14 +8,14 @@ package sipad.sena.model;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import sipad.sena.entidades.NivelHasHorario;
+import sipad.sena.entidades.Tipoinventario;
 
 /**
  *
  * @author Ramliw
  */
 @Stateless
-public class NivelHasHorarioFacade extends AbstractFacade<NivelHasHorario> implements NivelHasHorarioFacadeLocal {
+public class TipoinventarioFacade extends AbstractFacade<Tipoinventario> implements TipoinventarioFacadeLocal {
 
     @PersistenceContext(unitName = "SIPAD_3PU")
     private EntityManager em;
@@ -25,8 +25,8 @@ public class NivelHasHorarioFacade extends AbstractFacade<NivelHasHorario> imple
         return em;
     }
 
-    public NivelHasHorarioFacade() {
-        super(NivelHasHorario.class);
+    public TipoinventarioFacade() {
+        super(Tipoinventario.class);
     }
     
 }

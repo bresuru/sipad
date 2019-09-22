@@ -19,6 +19,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -38,6 +39,7 @@ public class Login implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_login")
     private Integer idLogin;
+    @Size(max = 45)
     @Column(name = "usuario")
     private String usuario;
     @Lob

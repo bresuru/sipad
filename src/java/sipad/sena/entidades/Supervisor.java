@@ -40,11 +40,9 @@ public class Supervisor implements Serializable {
     @Column(name = "id_Supervisor")
     private Integer idSupervisor;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSupervisor", fetch = FetchType.LAZY)
-    private List<Evento> eventoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSupervisor", fetch = FetchType.LAZY)
     private List<Torneo> torneoList;
-    @OneToMany(mappedBy = "idSupervisor", fetch = FetchType.LAZY)
-    private List<Notificacion> notificacionList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSupervisor", fetch = FetchType.LAZY)
+    private List<Evento> eventoList;
     @JoinColumn(name = "documento", referencedColumnName = "Documento")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Usuario documento;
@@ -67,14 +65,6 @@ public class Supervisor implements Serializable {
         this.idSupervisor = idSupervisor;
     }
 
-    public List<Evento> getEventoList() {
-        return eventoList;
-    }
-
-    public void setEventoList(List<Evento> eventoList) {
-        this.eventoList = eventoList;
-    }
-
     public List<Torneo> getTorneoList() {
         return torneoList;
     }
@@ -83,12 +73,12 @@ public class Supervisor implements Serializable {
         this.torneoList = torneoList;
     }
 
-    public List<Notificacion> getNotificacionList() {
-        return notificacionList;
+    public List<Evento> getEventoList() {
+        return eventoList;
     }
 
-    public void setNotificacionList(List<Notificacion> notificacionList) {
-        this.notificacionList = notificacionList;
+    public void setEventoList(List<Evento> eventoList) {
+        this.eventoList = eventoList;
     }
 
     public Usuario getDocumento() {

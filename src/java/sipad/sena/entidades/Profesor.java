@@ -6,7 +6,6 @@
 package sipad.sena.entidades;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,8 +17,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -30,7 +30,8 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Profesor.findAll", query = "SELECT p FROM Profesor p")
     , @NamedQuery(name = "Profesor.findByIdProfesor", query = "SELECT p FROM Profesor p WHERE p.idProfesor = :idProfesor")
-    , @NamedQuery(name = "Profesor.findByIdEspecialidad", query = "SELECT p FROM Profesor p WHERE p.idEspecialidad = :idEspecialidad")})
+    , @NamedQuery(name = "Profesor.findByIdEspecialidad", query = "SELECT p FROM Profesor p WHERE p.idEspecialidad = :idEspecialidad")
+    , @NamedQuery(name = "Profesor.findByExperienciaLaboral", query = "SELECT p FROM Profesor p WHERE p.experienciaLaboral = :experienciaLaboral")})
 public class Profesor implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,13 +41,15 @@ public class Profesor implements Serializable {
     @Column(name = "id_profesor")
     private Integer idProfesor;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "id_especialidad")
     private int idEspecialidad;
+    @Size(max = 150)
+    @Column(name = "experienciaLaboral")
+    private String experienciaLaboral;
     @JoinColumn(name = "documento", referencedColumnName = "Documento")
     @ManyToOne(fetch = FetchType.LAZY)
     private Usuario documento;
-    @OneToMany(mappedBy = "idProfesor", fetch = FetchType.LAZY)
-    private List<Nivel> nivelList;
 
     public Profesor() {
     }
@@ -76,20 +79,20 @@ public class Profesor implements Serializable {
         this.idEspecialidad = idEspecialidad;
     }
 
+    public String getExperienciaLaboral() {
+        return experienciaLaboral;
+    }
+
+    public void setExperienciaLaboral(String experienciaLaboral) {
+        this.experienciaLaboral = experienciaLaboral;
+    }
+
     public Usuario getDocumento() {
         return documento;
     }
 
     public void setDocumento(Usuario documento) {
         this.documento = documento;
-    }
-
-    public List<Nivel> getNivelList() {
-        return nivelList;
-    }
-
-    public void setNivelList(List<Nivel> nivelList) {
-        this.nivelList = nivelList;
     }
 
     @Override

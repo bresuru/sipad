@@ -8,6 +8,7 @@ package sipad.sena.entidades;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,6 +19,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -37,10 +39,11 @@ public class CategoriaDeportiva implements Serializable {
     @Basic(optional = false)
     @Column(name = "Id_Categoria")
     private Integer idCategoria;
+    @Size(max = 20)
     @Column(name = "Nombre_Categoria")
     private String nombreCategoria;
-    @OneToMany(mappedBy = "idCategoria", fetch = FetchType.LAZY)
-    private List<Nivel> nivelList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoriadeportivaIdCategoria", fetch = FetchType.LAZY)
+    private List<NivelCategoria> nivelCategoriaList;
 
     public CategoriaDeportiva() {
     }
@@ -65,12 +68,12 @@ public class CategoriaDeportiva implements Serializable {
         this.nombreCategoria = nombreCategoria;
     }
 
-    public List<Nivel> getNivelList() {
-        return nivelList;
+    public List<NivelCategoria> getNivelCategoriaList() {
+        return nivelCategoriaList;
     }
 
-    public void setNivelList(List<Nivel> nivelList) {
-        this.nivelList = nivelList;
+    public void setNivelCategoriaList(List<NivelCategoria> nivelCategoriaList) {
+        this.nivelCategoriaList = nivelCategoriaList;
     }
 
     @Override

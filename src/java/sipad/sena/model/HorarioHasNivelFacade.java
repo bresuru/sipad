@@ -8,14 +8,14 @@ package sipad.sena.model;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import sipad.sena.entidades.AlumnoHasEvento;
+import sipad.sena.entidades.HorarioHasNivel;
 
 /**
  *
  * @author Ramliw
  */
 @Stateless
-public class AlumnoHasEventoFacade extends AbstractFacade<AlumnoHasEvento> implements AlumnoHasEventoFacadeLocal {
+public class HorarioHasNivelFacade extends AbstractFacade<HorarioHasNivel> implements HorarioHasNivelFacadeLocal {
 
     @PersistenceContext(unitName = "SIPAD_3PU")
     private EntityManager em;
@@ -25,8 +25,8 @@ public class AlumnoHasEventoFacade extends AbstractFacade<AlumnoHasEvento> imple
         return em;
     }
 
-    public AlumnoHasEventoFacade() {
-        super(AlumnoHasEvento.class);
+    public HorarioHasNivelFacade() {
+        super(HorarioHasNivel.class);
     }
     
 }

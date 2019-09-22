@@ -7,26 +7,26 @@ package sipad.sena.model;
 
 import java.util.List;
 import javax.ejb.Local;
-import sipad.sena.entidades.Registropago;
+import sipad.sena.entidades.Inventario;
 
 /**
  *
  * @author Ramliw
  */
 @Local
-public interface RegistropagoFacadeLocal {
+public interface InventarioFacadeLocal {
 
-    void create(Registropago registropago);
+    void create(Inventario inventario);
 
-    void edit(Registropago registropago);
+    void edit(Inventario inventario);
 
-    void remove(Registropago registropago);
+    void remove(Inventario inventario);
 
-    Registropago find(Object id);
+    Inventario find(Object id);
 
-    List<Registropago> findAll();
+    List<Inventario> findAll();
 
-    List<Registropago> findRange(int[] range);
+    List<Inventario> findRange(int[] range);
 
     int count();
     

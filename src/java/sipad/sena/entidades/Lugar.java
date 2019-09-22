@@ -6,20 +6,17 @@
 package sipad.sena.entidades;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -39,13 +36,12 @@ public class Lugar implements Serializable {
     @Basic(optional = false)
     @Column(name = "Id_Lugar")
     private Integer idLugar;
+    @Size(max = 30)
     @Column(name = "Nombre_Lugar")
     private String nombreLugar;
     @Lob
     @Column(name = "foto_lugar")
     private byte[] fotoLugar;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "lugarIdLugar", fetch = FetchType.LAZY)
-    private List<Nivel> nivelList;
 
     public Lugar() {
     }
@@ -76,14 +72,6 @@ public class Lugar implements Serializable {
 
     public void setFotoLugar(byte[] fotoLugar) {
         this.fotoLugar = fotoLugar;
-    }
-
-    public List<Nivel> getNivelList() {
-        return nivelList;
-    }
-
-    public void setNivelList(List<Nivel> nivelList) {
-        this.nivelList = nivelList;
     }
 
     @Override

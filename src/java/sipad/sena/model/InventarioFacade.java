@@ -8,14 +8,14 @@ package sipad.sena.model;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import sipad.sena.entidades.Nivel;
+import sipad.sena.entidades.Inventario;
 
 /**
  *
  * @author Ramliw
  */
 @Stateless
-public class NivelFacade extends AbstractFacade<Nivel> implements NivelFacadeLocal {
+public class InventarioFacade extends AbstractFacade<Inventario> implements InventarioFacadeLocal {
 
     @PersistenceContext(unitName = "SIPAD_3PU")
     private EntityManager em;
@@ -25,8 +25,8 @@ public class NivelFacade extends AbstractFacade<Nivel> implements NivelFacadeLoc
         return em;
     }
 
-    public NivelFacade() {
-        super(Nivel.class);
+    public InventarioFacade() {
+        super(Inventario.class);
     }
     
 }

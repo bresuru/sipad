@@ -23,6 +23,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -43,18 +45,27 @@ public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
+    @NotNull
     @Column(name = "Documento")
     private Integer documento;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
     @Column(name = "Nombre_1")
     private String nombre1;
+    @Size(max = 30)
     @Column(name = "Nombre_2")
     private String nombre2;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 30)
     @Column(name = "Apellido_1")
     private String apellido1;
+    @Size(max = 30)
     @Column(name = "Apellido_2")
     private String apellido2;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "Fecha_Nacimiento")
     @Temporal(TemporalType.DATE)
     private Date fechaNacimiento;
@@ -68,6 +79,9 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "id_eps", referencedColumnName = "id_eps")
     @ManyToOne(fetch = FetchType.LAZY)
     private Eps idEps;
+    @JoinColumn(name = "id_estado_usuario", referencedColumnName = "id_estado_usuario")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private EstadoUsuario idEstadoUsuario;
     @JoinColumn(name = "id_login", referencedColumnName = "id_login")
     @ManyToOne(fetch = FetchType.LAZY)
     private Login idLogin;
@@ -87,10 +101,11 @@ public class Usuario implements Serializable {
         this.documento = documento;
     }
 
-    public Usuario(Integer documento, String nombre1, String apellido1) {
+    public Usuario(Integer documento, String nombre1, String apellido1, Date fechaNacimiento) {
         this.documento = documento;
         this.nombre1 = nombre1;
         this.apellido1 = apellido1;
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public Integer getDocumento() {
@@ -171,6 +186,14 @@ public class Usuario implements Serializable {
 
     public void setIdEps(Eps idEps) {
         this.idEps = idEps;
+    }
+
+    public EstadoUsuario getIdEstadoUsuario() {
+        return idEstadoUsuario;
+    }
+
+    public void setIdEstadoUsuario(EstadoUsuario idEstadoUsuario) {
+        this.idEstadoUsuario = idEstadoUsuario;
     }
 
     public Login getIdLogin() {

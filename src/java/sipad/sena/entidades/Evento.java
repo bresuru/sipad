@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,13 +17,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -45,26 +46,32 @@ public class Evento implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id_evento")
+    @Column(name = "Id_Evento")
     private Integer idEvento;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 30)
     @Column(name = "Nombre_Evento")
     private String nombreEvento;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "Horario")
     @Temporal(TemporalType.TIMESTAMP)
     private Date horario;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 200)
     @Column(name = "Informacion")
     private String informacion;
     @Lob
     @Column(name = "foto_evento")
     private byte[] fotoEvento;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "Id_Lugar")
     private int idLugar;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "eventoIdEvento", fetch = FetchType.LAZY)
-    private List<AlumnoHasEvento> alumnoHasEventoList;
+    @ManyToMany(mappedBy = "eventoList", fetch = FetchType.LAZY)
+    private List<Alumno> alumnoList;
     @JoinColumn(name = "Id_Supervisor", referencedColumnName = "id_Supervisor")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Supervisor idSupervisor;
@@ -132,12 +139,12 @@ public class Evento implements Serializable {
         this.idLugar = idLugar;
     }
 
-    public List<AlumnoHasEvento> getAlumnoHasEventoList() {
-        return alumnoHasEventoList;
+    public List<Alumno> getAlumnoList() {
+        return alumnoList;
     }
 
-    public void setAlumnoHasEventoList(List<AlumnoHasEvento> alumnoHasEventoList) {
-        this.alumnoHasEventoList = alumnoHasEventoList;
+    public void setAlumnoList(List<Alumno> alumnoList) {
+        this.alumnoList = alumnoList;
     }
 
     public Supervisor getIdSupervisor() {

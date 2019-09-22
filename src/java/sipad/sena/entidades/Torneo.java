@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,13 +17,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -46,36 +47,42 @@ public class Torneo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id_torneo")
+    @Column(name = "Id_Torneo")
     private Integer idTorneo;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 30)
     @Column(name = "Nombre_Torneo")
     private String nombreTorneo;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "Hora_Torneo")
     @Temporal(TemporalType.TIMESTAMP)
     private Date horaTorneo;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "Fecha_Inicio")
     @Temporal(TemporalType.DATE)
     private Date fechaInicio;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "Fecha_Final")
     @Temporal(TemporalType.DATE)
     private Date fechaFinal;
+    @Size(max = 200)
+    @Column(name = "descripcion_torneo")
+    private String descripcionTorneo;
     @Lob
     @Column(name = "imagen_torneo")
     private byte[] imagenTorneo;
-    @Column(name = "descripcion_torneo")
-    private String descripcionTorneo;
+    @ManyToMany(mappedBy = "torneoList", fetch = FetchType.LAZY)
+    private List<Alumno> alumnoList;
     @JoinColumn(name = "Id_Lugar_Torneo", referencedColumnName = "Id_Lugar_Torneo")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private LugarTorneo idLugarTorneo;
     @JoinColumn(name = "Id_Supervisor", referencedColumnName = "id_Supervisor")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Supervisor idSupervisor;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "torneoIdTorneo", fetch = FetchType.LAZY)
-    private List<AlumnoHasTorneo> alumnoHasTorneoList;
 
     public Torneo() {
     }
@@ -132,6 +139,14 @@ public class Torneo implements Serializable {
         this.fechaFinal = fechaFinal;
     }
 
+    public String getDescripcionTorneo() {
+        return descripcionTorneo;
+    }
+
+    public void setDescripcionTorneo(String descripcionTorneo) {
+        this.descripcionTorneo = descripcionTorneo;
+    }
+
     public byte[] getImagenTorneo() {
         return imagenTorneo;
     }
@@ -140,12 +155,12 @@ public class Torneo implements Serializable {
         this.imagenTorneo = imagenTorneo;
     }
 
-    public String getDescripcionTorneo() {
-        return descripcionTorneo;
+    public List<Alumno> getAlumnoList() {
+        return alumnoList;
     }
 
-    public void setDescripcionTorneo(String descripcionTorneo) {
-        this.descripcionTorneo = descripcionTorneo;
+    public void setAlumnoList(List<Alumno> alumnoList) {
+        this.alumnoList = alumnoList;
     }
 
     public LugarTorneo getIdLugarTorneo() {
@@ -162,14 +177,6 @@ public class Torneo implements Serializable {
 
     public void setIdSupervisor(Supervisor idSupervisor) {
         this.idSupervisor = idSupervisor;
-    }
-
-    public List<AlumnoHasTorneo> getAlumnoHasTorneoList() {
-        return alumnoHasTorneoList;
-    }
-
-    public void setAlumnoHasTorneoList(List<AlumnoHasTorneo> alumnoHasTorneoList) {
-        this.alumnoHasTorneoList = alumnoHasTorneoList;
     }
 
     @Override
