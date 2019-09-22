@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      >
+    <h:head>
+        <title>Inscripcion</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <ui:include src="../../../../WEB-INF/supervisor/link_estilos.xhtml"/>
+    </h:head>
+
+    <f:view locale="es">
+
+        <h:body>
+
+            <ui:include src="../../../../WEB-INF/supervisor/nav/nav_sup_sec.xhtml"/>
+
+            <div class="container w-100">
+
+                <div class="container h-100 bg-white mt-3 mb-4 w-75">
+                    <div class="row">
+                        <h1 class="col-12 pl-4 mt-2 mb-1">
+                            Formulario de Inscripcion para nuevos alumnos
+                        </h1>
+                    </div>
+
+                    <h:form class="was-validated p-3">
+
+                        <div class="col-12 text-center">
+                            <h:messages globalOnly="true" showDetail="true"/>
+                        </div>
+
+                        <div class="form-group">
+                            <h:outputLabel value="#{textSupp.categoriaDeportiva} "/>
+
+                            <h:selectOneMenu class="ml-1" value="#{controllerPrincipal.catgoriaD.idCategoria}">
+                                <f:selectItems
+                                    var="listaCD"
+                                    value="#{controllerPrincipal.categroiaDL}"
+                                    itemLabel="#{listaCD.nombreCategoria}"
+                                    itemValue="#{listaCD.idCategoria}"
+                                    />
+                            </h:selectOneMenu>
+
+                        </div>
+
+                        <div class="form-group">
+                            <h:outputLabel value="#{textSupp.nivelCategoria} "/>
+
+                            <h:selectOneMenu class="ml-1" value="#{controllerPrincipal.nivel.idNivel}">
+                                <f:selectItems
+                                    var="listaN"
+                                    value="#{controllerPrincipal.listaNivel}"
+                                    itemLabel="#{listaN.nombreNivel}"
+                                    itemValue="#{listaN.idNivel}"
+                                    />
+                            </h:selectOneMenu>
+
+                        </div>
+
+                        <div class="mb-3">
+                            <h:outputLabel for="nombreU" value="#{textSupp.nombre}"/>
+                            <h:inputText class="form-control" value="#{controllerPrincipal.usuario.nombre1}" 
+                                         id="nombreU" required="true"/>
+                            <h:messages for="nombreU" showDetail="true"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <h:outputLabel for="apellidoU" value="#{textSupp.apellidoUsu}"/>
+                            <h:inputText class="form-control" value="#{controllerPrincipal.usuario.apellido1}" 
+                                         id="apellidoU" required="true"/>
+                            <h:messages for="apellidoU" showDetail="true"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <h:outputLabel for="doc" value="#{textSupp.documentoI}"/>
+                            <h:inputText class="form-control" 
+                                         value="#{controllerPrincipal.usuario.documento}" 
+                                         id="doc" required="true"/>
+                            <h:messages for="doc" showDetail="true"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <h:outputLabel for="tell" value="#{textSupp.telefono}"/>
+                            <h:inputText a:type="number" value="#}" 
+                                         class="form-control " id="tell" required="true"/>
+                            <h:messages for="tell" showDetail="true"/>
+                        </div>
+
+                        <div class="custom-file mb-2 mt-2">
+                            <h:outputLabel for="tell" value="#{textSupp.eps}"/>
+                            <h:selectOneMenu class="ml-1" value="#{controllerPrincipal.eps.idEps}">
+                                <f:selectItems
+                                    var="listaE"
+                                    value="#{controllerPrincipal.epsL}"
+                                    itemLabel="#{listaE.nombreEps}"
+                                    itemValue="#{listaE.idEps}"
+                                    />
+                            </h:selectOneMenu>
+                            <h:messages for="eps" showDetail="true"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <h:outputLabel for="fechaN" value="#{textSupp.fechaNacimiento}"/>
+                            <h:inputText value="#{controllerPrincipal.usuario.fechaNacimiento}" a:type="date" class="form-control " id="fechaN">
+                                <f:convertDateTime pattern="yyyy-mm-dd"/>
+                            </h:inputText>
+                            <h:messages for="fechaN" showDetail="true"/>
+                        </div>
+
+
+                        <div class="mb-2 mt-2">
+                            <h:outputLabel value="#{textSupp.tipoSangre}" />
+                            <h:selectOneMenu class="ml-2" value="#{controllerPrincipal.tipoSangre.idtipoSangre}">
+                                <f:selectItems 
+                                    var="listaRh"
+                                    value="#{controllerPrincipal.listaTipoSangre}"
+                                    itemLabel="#{listaRh.rh}"
+                                    itemValue="#{listaRh.idtipoSangre}"
+                                    />
+                            </h:selectOneMenu>
+                            <h:messages for="rh" showDetail="true"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <h:outputLabel value="#{textSupp.direccion}" for="direccion"/>
+                            <h:inputText class="form-control " id="direccion" required="true"/>
+                            <h:messages for="direccion" showDetail="true"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="enfermedad">¿Padese de alguna enfemedad?</label>
+                            <h:inputTextarea class="form-control is-invalid" id="enfermedad"/>
+                        </div>
+
+                        <div class="custom-control custom-checkbox mb-3">
+                            <h:selectManyCheckbox class="custom-control-input" id="terminos" required="false"/>
+                            <h:outputLabel class="custom-control-label" for="terminos">
+                                Acepta los terminos y condiciones de la acedemia deportiva
+                            </h:outputLabel>
+                            <h:message for="terminos" showDetail="true"/>
+                        </div>
+
+                        <div class="col-12 text-center mt-4">
+                            <h:commandButton value="#{textSupp.crear}" class="btn btn-success" 
+                                             actionListener="#{controllerPrincipal.crearUsuario()}"/>
+                        </div>
+
+                    </h:form>
+
+                </div>
+
+            </div>
+
+        </h:body>
+
+    </f:view>
+
+</html>
