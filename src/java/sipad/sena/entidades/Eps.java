@@ -18,8 +18,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -40,8 +38,6 @@ public class Eps implements Serializable {
     @Column(name = "id_eps")
     private Integer idEps;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
     @Column(name = "nombre_eps")
     private String nombreEps;
     @OneToMany(mappedBy = "idEps", fetch = FetchType.LAZY)

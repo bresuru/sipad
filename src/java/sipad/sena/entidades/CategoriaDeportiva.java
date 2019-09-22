@@ -18,7 +18,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -38,7 +37,6 @@ public class CategoriaDeportiva implements Serializable {
     @Basic(optional = false)
     @Column(name = "Id_Categoria")
     private Integer idCategoria;
-    @Size(max = 20)
     @Column(name = "Nombre_Categoria")
     private String nombreCategoria;
     @OneToMany(mappedBy = "idCategoria", fetch = FetchType.LAZY)

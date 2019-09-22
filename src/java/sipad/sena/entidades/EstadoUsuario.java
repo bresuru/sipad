@@ -18,7 +18,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -38,7 +37,6 @@ public class EstadoUsuario implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_estado_usuario")
     private Integer idEstadoUsuario;
-    @Size(max = 45)
     @Column(name = "estado")
     private String estado;
     @OneToMany(mappedBy = "estadoAlumno", fetch = FetchType.LAZY)

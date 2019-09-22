@@ -21,8 +21,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -45,15 +43,11 @@ public class Alumno implements Serializable {
     @Column(name = "Id_Alumno")
     private Integer idAlumno;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 1)
     @Column(name = "Beca")
     private String beca;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "Fallas")
     private int fallas;
-    @Size(max = 45)
     @Column(name = "descripcion")
     private String descripcion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "alumnoIdAlumno", fetch = FetchType.LAZY)

@@ -21,7 +21,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -43,13 +42,11 @@ public class Notificacion implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_notificacion")
     private Integer idNotificacion;
-    @Size(max = 45)
     @Column(name = "nombre_notificacion")
     private String nombreNotificacion;
     @Column(name = "fecha_notificacion")
     @Temporal(TemporalType.DATE)
     private Date fechaNotificacion;
-    @Size(max = 100)
     @Column(name = "descripcion")
     private String descripcion;
     @JoinColumn(name = "id_supervisor", referencedColumnName = "id_Supervisor")

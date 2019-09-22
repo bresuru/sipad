@@ -21,8 +21,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -45,17 +43,13 @@ public class HorarioEntrenamiento implements Serializable {
     @Column(name = "id_horario_entrenamiento")
     private Integer idHorarioEntrenamiento;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 60)
     @Column(name = "dia")
     private String dia;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "hora_inicio")
     @Temporal(TemporalType.TIME)
     private Date horaInicio;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "hora_fin")
     @Temporal(TemporalType.TIME)
     private Date horaFin;

@@ -15,8 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -37,8 +35,6 @@ public class Especialidad implements Serializable {
     @Column(name = "Id_Especialidad")
     private Integer idEspecialidad;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
     @Column(name = "Nombre_Especialidad")
     private String nombreEspecialidad;
 

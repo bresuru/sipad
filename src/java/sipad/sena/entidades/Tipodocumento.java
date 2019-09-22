@@ -13,8 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -31,10 +29,8 @@ public class Tipodocumento implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
     @Column(name = "idTipoDoc")
     private Integer idTipoDoc;
-    @Size(max = 45)
     @Column(name = "topoDoc")
     private String topoDoc;
 
